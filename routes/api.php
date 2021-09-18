@@ -18,4 +18,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('booking', 'BookingController');
+Route::get('parking_slots', 'ParkingCountController@index');
 Route::get('registered_users', 'UserController@index');

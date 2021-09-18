@@ -33,4 +33,40 @@ class ParkingCount extends Model
             return false;
         }
     }
+
+    /**
+     * Get the status counts of the parking slots.
+     *
+     * @param array $filters
+     */
+    public function getParkingStatus($filters)
+    {
+        $result = [];
+        $parkingCounts = self::all()->pluck('count', 'attribute');
+        if (isset($filters['available'])) {
+            $result['reserved_slots_available'] = $parkingCounts['reserved_slots'] - $parkingCounts['reserved_slots_booked']
+                - $parkingCounts['reserved_slots_occupied'];
+            $result['general_slots_available'] = $parkingCounts['general_slots'] - $parkingCounts['general_slots_booked']
+                - $parkingCounts['general_slots_occupied'];
+            $result['total_slots_available'] = $result['reserved_slots_available'] + $result['general_slots_available'];
+        }
+        if (isset($filters['occupied'])) {
+            $result['reserved_slots_occupied'] = $parkingCounts['reserved_slots_occupied'];
+            $result['general_slots_occupied'] = $parkingCounts['general_slots_occupied'];
+            $result['total_slots_occupied'] = $result['reserved_slots_occupied'] + $result['general_slots_occupied'];
+        }
+        if (isset($filters['booked'])) {
+            $result['reserved_slots_booked'] = $parkingCounts['reserved_slots_booked'];
+            $result['general_slots_booked'] = $parkingCounts['general_slots_booked'];
+            $result['total_slots_booked'] = $result['reserved_slots_booked'] + $result['general_slots_booked'];
+        }
+        if (isset($filters['allotted'])) {
+            $result['reserved_slots_allotted'] = $parkingCounts['reserved_slots_booked']
+                + $parkingCounts['reserved_slots_occupied'];
+            $result['general_slots_allotted'] = $parkingCounts['general_slots_booked']
+                + $parkingCounts['general_slots_occupied'];
+            $result['total_slots_allotted'] = $result['reserved_slots_allotted'] + $result['general_slots_allotted'];
+        }
+        return $result;
+    }
 }
