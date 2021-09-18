@@ -21,19 +21,19 @@ class ParkingCountSeeder extends Seeder
             'count' => 24
         ]);
         ParkingCount::create([
-            'attribute' => 'general_slots',
-            'count' => 96
-        ]);
-        ParkingCount::create([
             'attribute' => 'reserved_slots_booked',
             'count' => 0
         ]);
         ParkingCount::create([
-            'attribute' => 'general_slots_booked',
+            'attribute' => 'reserved_slots_occupied',
             'count' => 0
         ]);
         ParkingCount::create([
-            'attribute' => 'reserved_slots_occupied',
+            'attribute' => 'general_slots',
+            'count' => 96
+        ]);
+        ParkingCount::create([
+            'attribute' => 'general_slots_booked',
             'count' => 0
         ]);
         ParkingCount::create([

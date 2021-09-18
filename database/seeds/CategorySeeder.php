@@ -13,10 +13,10 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'General',
+            'name' => Category::GENERAL
         ]);
         Category::create([
-            'name' => 'Reserved'
+            'name' => Category::RESERVED
         ]);
     }
 }

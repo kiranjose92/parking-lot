@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,8 @@ class ParkingCounts extends Migration
             $table->unsignedInteger('count');
             $table->timestamps();
         });
+
+        DB::update("ALTER TABLE parking_counts AUTO_INCREMENT = 1000;");
     }
 
     /**
