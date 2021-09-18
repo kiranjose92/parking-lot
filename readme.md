@@ -109,7 +109,7 @@ composer install
 *HTTP Method:* `GET`
 
 
-1. #### API to update the status of a booking to 'arrived' or 'departed':
+6. #### API to update the status of a booking to 'arrived' or 'departed':
 
 *Endpoint:* `/api/booking/{parking_number}`
 
