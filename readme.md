@@ -66,9 +66,13 @@ composer install
 ## APIs
 
 1. API to book a parking slot:
+
 **Endpoint:** `/api/booking`
+
 **HTTP Method:** `POST`
+
 **Request Header:** `Content-Type:application/json`
+
 **Sample Payload:** 
 ```
 {
@@ -78,15 +82,21 @@ composer install
 
 
 2. API to get the count of all available parking slots
+
 **Endpoint:** `/api/parking_slots?available=true`
+
 **HTTP Method:** `GET`
 
 3. API to get the count of all occupied parking slots
+
 **Endpoint:** `/api/parking_slots?occupied=true`
+
 **HTTP Method:** `GET`
 
 4. API to get parking slot status counts 
+
 **Endpoint:** `/api/parking_slots?available=true&occupied=true&booked=true&allotted=true`
+
 **HTTP Method:** `GET`
 
 5. API to get all registered users
