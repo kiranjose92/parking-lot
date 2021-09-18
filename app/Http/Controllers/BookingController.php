@@ -10,16 +10,6 @@ use App\Http\Controllers\Controller;
 class BookingController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Book a parking slot for a user.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -56,6 +46,7 @@ class BookingController extends Controller
      */
     public function update(Request $request, Booking $booking)
     {
-        //
+        $booking->updateStatus($request->status);
+        return response()->json($booking);
     }
 }

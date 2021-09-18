@@ -61,7 +61,7 @@ class Booking extends Model
     /**
      * Function to get the latest parking allocated for a user.
      *
-     * @param $userId
+     * @param integer $userId
      */
     public static function getAllotedParking($userId)
     {
@@ -69,5 +69,25 @@ class Booking extends Model
             ->whereIn('status', [self::BOOKED_STATUS, self::ARRIVED_STATUS])
             ->latest()
             ->first();
+    }
+
+    /**
+     * Function to update the status of a booking to 'arrived' or 'departed'.
+     *
+     * @param string $status
+     */
+    public function updateStatus($status)
+    {
+        switch ($status) {
+            case self::ARRIVED_STATUS:
+                $this->arrived_at = date('Y-m-d H:i:s');
+                $this->status = self::ARRIVED_STATUS;
+                break;
+            case self::DEPARTED_STATUS:
+                $this->departed_at = date('Y-m-d H:i:s');
+                $this->status = self::DEPARTED_STATUS;
+                break;
+        }
+        $this->save();
     }
 }

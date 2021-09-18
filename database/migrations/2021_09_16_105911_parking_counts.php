@@ -20,8 +20,6 @@ class ParkingCounts extends Migration
             $table->unsignedInteger('count');
             $table->timestamps();
         });
-
-        DB::update("ALTER TABLE parking_counts AUTO_INCREMENT = 1000;");
     }
 
     /**
