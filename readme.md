@@ -123,3 +123,8 @@ composer install
 	"status": "arrived"
 }
 ```
+
+
+## Console commands
+
+1. Created console command - [App\Console\Commands\TimeoutBookings::class](https://github.com/kiranjose92/parking-lot/blob/master/app/Console/Commands/TimeoutBookings.php) to clear parking slot bookings that has gone past the wait time. The console command needs is set to run every minute using cron (`$schedule->command('bookings:timeout')->everyMinute();`).
