@@ -24,8 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        // Run the console command (see App\Console\Commands\TimeoutBookings::class) every minute
+        // to clear parking slot bookings that has gone past the wait time.
+        $schedule->command('bookings:timeout')->everyMinute();
     }
 
     /**
