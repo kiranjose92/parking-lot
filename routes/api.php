@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::resource('booking', 'BookingController');
+Route::get('registered_users', 'UserController@index');
