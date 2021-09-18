@@ -38,6 +38,10 @@ class Booking extends Model
      */
     public function bookSlot($user)
     {
+        $existingParking = self::getAllotedParking($user->id);
+        if ($existingParking) {
+            throw new \Exception('Parking number - ' . $existingParking->id . ' already allocated for user');
+        }
         $category = $user->category->name;
         $isSlotAlloted = ParkingCount::bookSlot($category);
         if (!$isSlotAlloted && $category == Category::RESERVED) {
@@ -52,5 +56,18 @@ class Booking extends Model
         $this->booked_at = date('Y-m-d H:i:s');
         $this->status = self::BOOKED_STATUS;
         $this->save();
+    }
+
+    /**
+     * Function to get the latest parking allocated for a user.
+     *
+     * @param $userId
+     */
+    public static function getAllotedParking($userId)
+    {
+        return self::where('user_id', $userId)
+            ->whereIn('status', [self::BOOKED_STATUS, self::ARRIVED_STATUS])
+            ->latest()
+            ->first();
     }
 }
